@@ -3,6 +3,7 @@ namespace Store.Web
 {
     public class Program
     {
+        //dev
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
