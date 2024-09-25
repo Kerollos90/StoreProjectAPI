@@ -49,6 +49,7 @@ namespace Store.Web
 
             app.UseAuthorization();
 
+            app.UseStaticFiles();
 
             app.MapControllers();
 
