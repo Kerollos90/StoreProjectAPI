@@ -20,11 +20,11 @@ namespace Store.Service.Services.Products
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IReadOnlyList<ProductDetailsDto>> GetAllBrandsAsync()
+        public async Task<IReadOnlyList<BrandTypesDtos>> GetAllBrandsAsync()
         { 
             var brands = await _unitOfWork.Repository<ProductBrand,int>().GetAllAsNoTrackingAsync();
 
-            var mappedbrands = _mapper.Map<IReadOnlyList<ProductDetailsDto>>(brands);
+            var mappedbrands = _mapper.Map<IReadOnlyList<BrandTypesDtos>>(brands);
 
             return mappedbrands;
         
@@ -44,11 +44,11 @@ namespace Store.Service.Services.Products
 
         }
 
-        public async Task<IReadOnlyList<ProductDetailsDto>> GetAllTypesAsync()
+        public async Task<IReadOnlyList<BrandTypesDtos>> GetAllTypesAsync()
         {
             var Types = await _unitOfWork.Repository<ProductType, int>().GetAllAsync();
 
-            var mapped = _mapper.Map<IReadOnlyList<ProductDetailsDto>>(Types);
+            var mapped = _mapper.Map<IReadOnlyList<BrandTypesDtos>>(Types);
 
 
             return mapped;

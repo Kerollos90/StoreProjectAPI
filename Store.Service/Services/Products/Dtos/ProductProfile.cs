@@ -16,8 +16,8 @@ namespace Store.Service.Services.Products.Dtos
             .ForMember(d=>d.TypeName,o=>o.MapFrom(s=>s.Type.Name));
 
 
-            CreateMap<ProductBrand, ProductDetailsDto>();
-            CreateMap<ProductType, ProductDetailsDto>();
+            CreateMap<ProductBrand, BrandTypesDtos>();
+            CreateMap<ProductType, BrandTypesDtos>();
         
         }
         

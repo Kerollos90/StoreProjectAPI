@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Store.Repository.Repositories
 {
-    public class UnitOfWork<TEntity, TKey> : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly StoreDbContext _context;
 

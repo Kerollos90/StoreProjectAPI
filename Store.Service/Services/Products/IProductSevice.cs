@@ -6,8 +6,8 @@
         Task<ProductDetailsDto> GetProductByIdAsync(int? id);
 
         Task<IReadOnlyList<ProductDetailsDto>> GetAllProductsAsync();
-        Task<IReadOnlyList<ProductDetailsDto>> GetAllBrandsAsync();
-        Task<IReadOnlyList<ProductDetailsDto>> GetAllTypesAsync();
+        Task<IReadOnlyList<BrandTypesDtos>> GetAllBrandsAsync();
+        Task<IReadOnlyList<BrandTypesDtos>> GetAllTypesAsync();
 
        
 
