@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Store.Data.Contexts;
 using Store.Data.Entites;
 using System;
@@ -28,7 +29,7 @@ namespace Store.Repository
                     var brandsdata = File.ReadAllText("../Store.Repository/SeedData/brands.json");
 
                     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsdata);
-
+                   
                     if (brands is not null)
                         await context.ProductBrands.AddRangeAsync(brands);
 
