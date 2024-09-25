@@ -1,20 +1,23 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Writers;
 using Store.Data.Contexts;
+using Store.Repository;
+using Store.Web.Helper;
 
 namespace Store.Web
 {
     public class Program
     {
-        //dev
-        public static void Main(string[] args)
+        
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<StoreDbContext>(o=>
+            builder.Services.AddDbContext<StoreDbContext>(o =>
                 {
                     o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
                 });
@@ -24,12 +27,15 @@ namespace Store.Web
 
             var app = builder.Build();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+           await ApplySeedMethod.ApplySeedData(app);
+
+
+                // Configure the HTTP request pipeline.
+                if (app.Environment.IsDevelopment())
+                {
+                    app.UseSwagger();
+                    app.UseSwaggerUI();
+                }
 
             app.UseHttpsRedirection();
 

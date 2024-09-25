@@ -12,7 +12,7 @@ namespace Store.Repository
 {
     public class StoreSeedData
     {
-        public async Task Seeddata(StoreDbContext context ,ILoggerFactory factory)
+        public static async Task Seeddata(StoreDbContext context ,ILoggerFactory factory)
         {
 
             try
@@ -65,7 +65,7 @@ namespace Store.Repository
             }
             catch(Exception ex)
             {
-                var logger = factory.CreateLogger<StoreDbContext>();
+                var logger = factory.CreateLogger<StoreSeedData>();
 
                 logger.LogError(ex.Message);
 
