@@ -9,11 +9,11 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace Store.Repository
+namespace Store.Repository.SeedData
 {
     public class StoreSeedData
     {
-        public static async Task Seeddata(StoreDbContext context ,ILoggerFactory factory)
+        public static async Task Seeddata(StoreDbContext context, ILoggerFactory factory)
         {
 
             try
@@ -29,7 +29,7 @@ namespace Store.Repository
                     var brandsdata = File.ReadAllText("../Store.Repository/SeedData/brands.json");
 
                     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsdata);
-                   
+
                     if (brands is not null)
                         await context.ProductBrands.AddRangeAsync(brands);
 
@@ -64,7 +64,7 @@ namespace Store.Repository
                 await context.SaveChangesAsync();
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var logger = factory.CreateLogger<StoreSeedData>();
 

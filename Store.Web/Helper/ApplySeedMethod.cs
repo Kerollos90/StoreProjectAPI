@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store.Data.Contexts;
-using Store.Repository;
+using Store.Repository.SeedData;
 
 namespace Store.Web.Helper
 {
