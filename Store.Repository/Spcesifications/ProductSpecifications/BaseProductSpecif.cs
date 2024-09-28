@@ -16,9 +16,28 @@ namespace Store.Repository.Spcesifications.ProductSpecifications
 
        public string? Sort { get; set; }
 
+        public int pageindex { get; set; } = 1;
+
+        private const int MAXPAGESIZE  = 50;
+
+        
+
+        private int _pagesize = 5 ;
+
+        public int pagesize 
+        {
+            get => _pagesize; 
+            set=> _pagesize = (value > MAXPAGESIZE) ? int.MaxValue : value; 
+        }
 
 
         
+
+        
+
+             
+
+
 
     }
 }

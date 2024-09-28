@@ -2,6 +2,7 @@
 using Store.Data.Entites;
 using Store.Repository.Interfaces;
 using Store.Repository.Spcesifications.ProductSpecifications;
+using Store.Service.Helper;
 using Store.Service.Services.Products.Dtos;
 using System;
 using System.Collections.Generic;
@@ -31,17 +32,21 @@ namespace Store.Service.Services.Products
         
         }
 
-        public async Task<IReadOnlyList<ProductDetailsDto>> GetAllProductsAsync(BaseProductSpecif specif)
+        public async Task<PaginatedResultDto<ProductDetailsDto>> GetAllProductsAsync(BaseProductSpecif specif)
         {
             var specs = new ProductSpecification(specif);
 
             var products = await _unitOfWork.Repository<Store.Data.Entites.Product,int>().GetAllWithSpcificationAsync(specs);
 
+            var countinput = new CountPaginated(specif);
+
+            var count = await _unitOfWork.Repository<Product, int>().GetCountSpcificationAsync(countinput);
+
             var mapped = _mapper.Map<IReadOnlyList<ProductDetailsDto>>(products);
 
 
 
-            return mapped;
+            return new PaginatedResultDto<ProductDetailsDto>(specif.pageindex,specif.pagesize , count ,mapped);
 
 
         }
@@ -68,6 +73,8 @@ namespace Store.Service.Services.Products
             var specs = new ProductSpecification(id);
 
             var product = await _unitOfWork.Repository<Product,int>().GetWithSpcificationById(specs);
+
+            
 
             var mapped = _mapper.Map<ProductDetailsDto>(product);
 

@@ -22,6 +22,10 @@ namespace Store.Repository.Spcesifications.ProductSpecifications
 
             orderAsc(p => p.Id);
 
+            ApplyPaginated( spec.pagesize * (spec.pageindex - 1),spec.pagesize);
+
+            
+
             if (!string.IsNullOrEmpty(spec.Sort))
             {
                 switch (spec.Sort)
