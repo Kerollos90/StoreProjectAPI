@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Repository.ProductSpecifications
+namespace Store.Repository.Spcesifications.ProductSpecifications
 {
-    public class BaseProductSpecif 
+    public class BaseProductSpecif
     {
         public int? TypeId { get; set; }
 

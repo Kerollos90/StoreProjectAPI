@@ -6,23 +6,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Repository.ProductSpecifications
+namespace Store.Repository.Spcesifications.ProductSpecifications
 {
     public class ProductSpecification : BaseSpecification<Product>
     {
         public ProductSpecification(BaseProductSpecif spec) : base
             (
-               Product => (spec.BrandId.HasValue || Product.BrandId == spec.BrandId.Value) &&
-               (spec.TypeId.HasValue || Product.TypeId == spec.TypeId.Value)
+               Product => (!spec.BrandId.HasValue || Product.BrandId == spec.BrandId.Value) &&
+               (!spec.TypeId.HasValue || Product.TypeId == spec.TypeId.Value)
             )
         {
 
-            AddIncludes(p=>p.BrandId);
-            AddIncludes(p=>p.TypeId);
-        
-        
+            AddIncludes(p => p.Brand);
+            AddIncludes(p => p.Type);
+
+
         }
-      
+
 
 
 
