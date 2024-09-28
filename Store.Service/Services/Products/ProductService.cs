@@ -65,7 +65,9 @@ namespace Store.Service.Services.Products
             if(id is null)
                 throw new ArgumentNullException(nameof(id));
 
-            var product = await _unitOfWork.Repository<Product,int>().GetById(id.Value);
+            var specs = new ProductSpecification(id);
+
+            var product = await _unitOfWork.Repository<Product,int>().GetWithSpcificationById(specs);
 
             var mapped = _mapper.Map<ProductDetailsDto>(product);
 

@@ -20,7 +20,50 @@ namespace Store.Repository.Spcesifications.ProductSpecifications
             AddIncludes(p => p.Brand);
             AddIncludes(p => p.Type);
 
+            orderAsc(p => p.Id);
 
+            if (!string.IsNullOrEmpty(spec.Sort))
+            {
+                switch (spec.Sort)
+                {
+                    case "Price":
+                        orderAsc(x => x.Price);
+                        break;
+
+                    case "namedesc":
+                        orderDesc(x => x.Name);
+                        break;
+
+
+                    case "iddesc":
+                        orderDesc(x => x.Id);
+                        break;
+
+                        default:
+                        orderAsc(x => x.Id);
+                        
+                        
+                        break;
+
+
+
+
+
+                }
+
+
+
+
+            }
+
+
+        }
+
+        public ProductSpecification(int? id) : base(x=>x.Id == id)         
+        {
+
+            AddIncludes(p => p.Brand);
+            AddIncludes(p => p.Type);
         }
 
 
@@ -28,4 +71,6 @@ namespace Store.Repository.Spcesifications.ProductSpecifications
 
 
     }
+
+
 }

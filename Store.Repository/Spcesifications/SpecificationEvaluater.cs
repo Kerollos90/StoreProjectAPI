@@ -18,6 +18,13 @@ namespace Store.Repository.Spcesifications
             if (specs.Criteria != null)
                 query = query.Where(specs.Criteria);
 
+
+            if (specs.orderby != null)
+                query = query.OrderBy(specs.orderby);
+
+            if (specs.orderbyDesc != null)
+                query = query.OrderByDescending(specs.orderbyDesc);
+
             query = specs.Includes.Aggregate(query, (current, includeExpression) => current.Include(includeExpression));
 
 
