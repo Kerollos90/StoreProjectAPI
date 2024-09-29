@@ -12,7 +12,8 @@ namespace Store.Repository.Spcesifications.ProductSpecifications
         public CountPaginated(BaseProductSpecif spec) : base
             (
                Product => (!spec.BrandId.HasValue || Product.BrandId == spec.BrandId.Value) &&
-               (!spec.TypeId.HasValue || Product.TypeId == spec.TypeId.Value)
+               (!spec.TypeId.HasValue || Product.TypeId == spec.TypeId.Value) &&
+               (string.IsNullOrEmpty(spec.Search) || Product.Name.Trim().ToLower().Contains(spec.Search))
             )
         { 
         
