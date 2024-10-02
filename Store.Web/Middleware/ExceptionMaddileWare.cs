@@ -23,7 +23,7 @@ namespace Store.Web.Middleware
         }
 
 
-        public async void InvokeAsync(HttpContext context)
+        public async Task InvokeAsync(HttpContext context)
         {
 
             try
