@@ -8,6 +8,7 @@ using Store.Repository.Repositories;
 using Store.Service.Services.Products;
 using Store.Service.Services.Products.Dtos;
 using Store.Web.Helper;
+using Store.Web.Middleware;
 
 namespace Store.Web
 {
@@ -44,6 +45,9 @@ namespace Store.Web
                     app.UseSwagger();
                     app.UseSwaggerUI();
                 }
+
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 
