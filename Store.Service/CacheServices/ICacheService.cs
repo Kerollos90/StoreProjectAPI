@@ -11,7 +11,7 @@ namespace Store.Service.CacheServices
 
         Task<string> GetCacheKey(string cacheKey);
 
-        Task SetCacheKey(string cacheKey, string Response , TimeSpan timeInLive);
+        Task SetCacheKey(string cacheKey, object Response , TimeSpan timeInLive);
 
 
     }

@@ -37,7 +37,7 @@ namespace Store.Service.CacheServices
             
         }
 
-        public async Task SetCacheKey(string cacheKey, string Response, TimeSpan timeInLive)
+        public async Task SetCacheKey(string cacheKey, object Response, TimeSpan timeInLive)
         {
             if(cacheKey == null)
                 return;
