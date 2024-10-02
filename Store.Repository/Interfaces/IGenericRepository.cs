@@ -1,4 +1,5 @@
 ﻿using Store.Data.Entites;
+using Store.Repository.Spcesifications;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,10 @@ namespace Store.Repository.Interfaces
         Task<IReadOnlyList<TEntity>> GetAllAsync();
         Task<IReadOnlyList<TEntity>> GetAllAsNoTrackingAsync();
 
+        Task<IReadOnlyList<TEntity>> GetAllWithSpcificationAsync(ISpecification<TEntity> specs);
+        Task<int> GetCountSpcificationAsync(ISpecification<TEntity> specs);
+
+        Task<TEntity> GetWithSpcificationById(ISpecification<TEntity> specs);
 
 
         Task Add(TEntity entity);
