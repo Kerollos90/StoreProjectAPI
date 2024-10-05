@@ -12,13 +12,13 @@ namespace Store.Service.BasketServices
 {
     public class BasketService : IBasketService
     {
-        private readonly BasketRepository _repository;
+        private readonly IBasketRepository _repository;
         private readonly IMapper _mapper;
 
-        public BasketService(BasketRepository repository , IMapper mapper) 
+        public BasketService(IBasketRepository repository , IMapper mapper) 
         {
-            repository = _repository;
-            mapper = _mapper;
+            _repository   =  repository ;
+            _mapper =   mapper ;
         }
 
         public async Task<bool> DeleteBasketAsync(string id)

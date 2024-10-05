@@ -48,6 +48,19 @@ namespace Store.Repository.SeedData
 
                 }
 
+                if (context.DeliveryMethods != null && !context.DeliveryMethods.Any())
+                {
+                    var deliverymethod = File.ReadAllText("../Store.Repository/SeedData/delivery.json");
+
+                    var deliveries = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliverymethod);
+
+                    if (deliveries is not null)
+                        await context.DeliveryMethods.AddRangeAsync(deliveries);
+
+
+                }
+
+
                 if (context.Products != null && !context.Products.Any())
                 {
                     var productsdata = File.ReadAllText("../Store.Repository/SeedData/products.json");
