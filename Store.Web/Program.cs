@@ -1,13 +1,19 @@
 
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Writers;
+using StackExchange.Redis;
 using Store.Data.Contexts;
 using Store.Repository;
 using Store.Repository.Interfaces;
 using Store.Repository.Repositories;
+using Store.Service.CacheServices;
+using Store.Service.HandleResponse;
 using Store.Service.Services.Products;
 using Store.Service.Services.Products.Dtos;
+using Store.Web.Extensions;
 using Store.Web.Helper;
+using Store.Web.Middleware;
 
 namespace Store.Web
 {
@@ -21,14 +27,24 @@ namespace Store.Web
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddDbContext<StoreDbContext>(o =>
-                {
-                    o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-                });
 
-            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
-            builder.Services.AddScoped<IProductSevice,ProductService>();
-            builder.Services.AddAutoMapper(typeof(ProductProfile));
+            builder.Services.AddDbContext<StoreDbContext>(o =>
+            {
+                o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
+
+
+            builder.Services.AddSingleton<IConnectionMultiplexer >(o => 
+            {
+
+                var connection = ConfigurationOptions.Parse(builder.Configuration.GetConnectionString("Redis"));
+
+                return ConnectionMultiplexer.Connect(connection);
+            });
+
+
+            builder.Services.AddApplicationServices();
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
@@ -44,6 +60,9 @@ namespace Store.Web
                     app.UseSwagger();
                     app.UseSwaggerUI();
                 }
+
+
+            app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Expressions;
 using Store.Repository.Spcesifications.ProductSpecifications;
 using Store.Service.Services.Products.Dtos;
+using Store.Web.Helper;
 
 namespace Store.Web.Controllers
 {
@@ -21,6 +22,7 @@ namespace Store.Web.Controllers
         public async Task<ActionResult<IReadOnlyList<BrandTypesDtos>>> GetAllBrandsAsync()
            => Ok(await _productSevice.GetAllBrandsAsync());
         [HttpGet]
+        [CacheLiveTimeInSerever(20)]
 
         public async Task<ActionResult<IReadOnlyList<ProductDetailsDto>>> GetAllProductsAsync([FromQuery]BaseProductSpecif specif)
          => Ok(await _productSevice.GetAllProductsAsync( specif));

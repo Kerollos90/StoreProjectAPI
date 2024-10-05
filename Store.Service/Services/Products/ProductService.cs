@@ -74,7 +74,8 @@ namespace Store.Service.Services.Products
 
             var product = await _unitOfWork.Repository<Product,int>().GetWithSpcificationById(specs);
 
-            
+            if (product is null)
+                throw new Exception("Product Not Found");
 
             var mapped = _mapper.Map<ProductDetailsDto>(product);
 
