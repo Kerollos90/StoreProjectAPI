@@ -9,7 +9,7 @@ namespace Store.Web.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class ProductController : ControllerBase
+    public class ProductController : BaseController
     {
         private readonly IProductSevice _productSevice;
 

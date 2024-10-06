@@ -9,7 +9,7 @@ namespace Store.Service.BasketServices.Dtos
 {
     public class CustomerBasketDto
     {
-        public string Id { get; set; }
+        public string? Id { get; set; }
 
         public int? DeliveryMethodId { get; set; }
 
