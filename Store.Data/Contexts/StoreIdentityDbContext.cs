@@ -15,7 +15,6 @@ namespace Store.Data.Contexts
         {
         }
 
-        public DbSet<AppUser> AppUsers { get; set; }
-        public DbSet<Address>  Addresses { get; set; }
+       
     }
 }
