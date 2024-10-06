@@ -33,6 +33,11 @@ namespace Store.Web
                 o.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
             });
 
+            builder.Services.AddDbContext<StoreIdentityDbContext>(o =>
+            {
+                o.UseSqlServer(builder.Configuration.GetConnectionString("IdetityConnection"));
+            });
+
 
             builder.Services.AddSingleton<IConnectionMultiplexer >(o => 
             {
@@ -65,6 +70,8 @@ namespace Store.Web
             app.UseMiddleware<ExceptionMiddleware>();
 
             app.UseHttpsRedirection();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
