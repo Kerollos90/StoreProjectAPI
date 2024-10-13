@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Store.Data.Entites.identityAppUser;
 using System;
@@ -11,19 +12,27 @@ using System.Threading.Tasks;
 
 namespace Store.Service.Services.TokenServices
 {
+
     public class TokenService : ITokenService
     {
+        
+        
+        
         private readonly IConfiguration _configuration;
         private readonly SymmetricSecurityKey _key;
 
         public TokenService(IConfiguration configuration) 
         {
             _configuration = configuration;
-            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Token : Key"]));
+            _key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Token:Key"]));
         }
         public string GenerateToken(AppUser appUser)
         {
-            var claim = new List<Claim>
+            try
+            {
+
+
+                var claim = new List<Claim>
             {
                 new Claim(ClaimTypes.Email , appUser.Email),
                 new Claim(ClaimTypes.GivenName , appUser.DisplayName),
@@ -33,28 +42,36 @@ namespace Store.Service.Services.TokenServices
 
             };
 
-            var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
+                var creds = new SigningCredentials(_key, SecurityAlgorithms.HmacSha256);
 
-            var tokenDescriptor = new SecurityTokenDescriptor()
+                var tokenDescriptor = new SecurityTokenDescriptor()
+                {
+                    Subject = new ClaimsIdentity(claim),
+                    SigningCredentials = creds,
+                    Issuer = _configuration["Token:Issuer"],
+                    IssuedAt = DateTime.Now,
+                    Expires = DateTime.Now.AddDays(1),
+
+
+                };
+
+                var tokenHandler = new JwtSecurityTokenHandler();
+
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+
+
+                return tokenHandler.WriteToken(token);
+
+
+
+            }
+            catch (Exception ex) 
             {
-                Subject = new ClaimsIdentity(claim),
-                SigningCredentials = creds,
-                Issuer = _configuration["Token :Issure "],
-                IssuedAt = DateTime.Now,
-                Expires = DateTime.Now.AddDays(1),
-
-
-            };
-
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var token = tokenHandler.CreateToken(tokenDescriptor);
-
-
-            return tokenHandler.WriteToken(token);
-
-
+                throw new Exception("Error in token");
             
+            }
         }
+        
+
     }
 }

@@ -28,9 +28,9 @@ namespace Store.Web.Extensions
                     option.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token : Key"])),
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"])),
                         ValidateIssuer = true,
-                        ValidIssuer = _config["Token:Issure"],
+                        ValidIssuer = _config["Token:Issuer"],
                         ValidateAudience = false
 
                     };
