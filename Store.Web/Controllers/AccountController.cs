@@ -31,6 +31,19 @@ namespace Store.Web.Controllers
         }
 
 
+        [HttpPost]
+        public async Task<ActionResult<UserDto>> Register(RegisterDto login)
+        {
+            var user = await _userService.Register(login);
+            if (user == null)
+                return BadRequest(new CustomExeption(408, "Email Already Exist"));
+
+            return Ok(user);
+
+
+        }
+
+
 
 
 
