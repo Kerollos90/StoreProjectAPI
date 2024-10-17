@@ -17,13 +17,11 @@ namespace Store.Data.Entites.OrederEntites
 
         public DeliveryMethod DeliveryMethod { get; set; }
 
-        public int? DeliveryId { get; set; }
+        public int? DeliveryMethodId { get; set; }
 
         public OrderStatus OrderStatus { get; set; } = OrderStatus.placed;
 
         public OrderPaymentStatus OrderPayment { get; set; } = OrderPaymentStatus.Pending;
-
-        public OrderItem OrderItem { get; set; }
 
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
 
