@@ -5,12 +5,14 @@ using Store.Repository.Repositories;
 using Store.Service.Services.Products.Dtos;
 using Store.Service.Services.Products;
 using Store.Service.HandleResponse;
-using Store.Service.CacheServices;
-using Store.Service.BasketServices;
 using Store.Repository.Baskets;
-using Store.Service.BasketServices.Dtos;
 using Store.Service.Services.TokenServices;
 using Store.Service.Services.UserServices;
+using Store.Service.Services.CacheServices;
+using Store.Service.Services.BasketServices;
+using Store.Service.Services.BasketServices.Dtos;
+using Store.Service.Services.OrderServices;
+using Store.Service.Services.OrderServices.OrderDtos;
 
 namespace Store.Web.Extensions
 {
@@ -27,10 +29,12 @@ namespace Store.Web.Extensions
             services.AddAutoMapper(typeof(ProductProfile));
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IUserService, UserService>();
             services.AddAutoMapper(typeof(BasketProfile));
+            services.AddAutoMapper(typeof(OrderProfile));
 
 
 

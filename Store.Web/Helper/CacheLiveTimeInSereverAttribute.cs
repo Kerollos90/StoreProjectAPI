@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
-using Store.Service.CacheServices;
+using Store.Service.Services.CacheServices;
 using System.Text;
 
 namespace Store.Web.Helper

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Service.BasketServices.Dtos
+namespace Store.Service.Services.BasketServices.Dtos
 {
     public class CustomerBasketDto
     {

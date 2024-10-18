@@ -6,19 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Store.Service.BasketServices.Dtos
+namespace Store.Service.Services.BasketServices.Dtos
 {
     public class BasketProfile : Profile
     {
 
 
 
-        public BasketProfile() 
+        public BasketProfile()
         {
-            CreateMap<BasketItem ,BasketItemDto >().ReverseMap();
-            CreateMap<CustomerBasket ,CustomerBasketDto >().ReverseMap();
-            
-            
+            CreateMap<BasketItem, BasketItemDto>().ReverseMap();
+            CreateMap<CustomerBasket, CustomerBasketDto>().ReverseMap();
+
+
 
 
         }

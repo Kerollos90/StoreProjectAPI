@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Store.Service.BasketServices;
-using Store.Service.BasketServices.Dtos;
+using Store.Service.Services.BasketServices;
+using Store.Service.Services.BasketServices.Dtos;
 
 namespace Store.Web.Controllers
 {
-   
+
     public class BasketController : BaseController
     {
         private readonly IBasketService _basket;
