@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Store.Service.Services.OrderServices.OrderDtos
 {
-    public class OrderItemPictureUrlResolver : IValueResolver<OrderItem, OrderItemDto, string>()
+    public class OrderItemPictureUrlResolver : IValueResolver<OrderItem, OrderItemDto, string>
     {
         private readonly IConfiguration _configuration;
 

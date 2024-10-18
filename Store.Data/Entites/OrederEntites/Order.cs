@@ -25,9 +25,9 @@ namespace Store.Data.Entites.OrederEntites
 
         public IReadOnlyList<OrderItem> OrderItems { get; set; }
 
-        public string SubTotal { get; set; }
+        public decimal SubTotal { get; set; }
 
-        public string GetTotal()
+        public decimal GetTotal()
             => SubTotal + DeliveryMethod.Price;
         public string? BasketId { get; set; }
 

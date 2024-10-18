@@ -7,7 +7,7 @@ using Store.Data.Contexts;
 using Store.Repository;
 using Store.Repository.Interfaces;
 using Store.Repository.Repositories;
-using Store.Service.CacheServices;
+using Store.Service.Services.CacheServices;
 using Store.Service.HandleResponse;
 using Store.Service.Services.Products;
 using Store.Service.Services.Products.Dtos;
